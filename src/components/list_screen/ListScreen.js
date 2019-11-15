@@ -5,12 +5,18 @@ import { compose } from 'redux';
 import ItemsList from './ItemsList.js'
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
-import { Modal, Button } from 'react-materialize';
+import { Modal, Button, Icon } from 'react-materialize';
 
 class ListScreen extends Component {
     state = {
         name: " ",
         owner: " ",
+    }
+
+    componentDidMount(){
+        const firestore = getFirestore();
+        this.props.todoList.date = new Date();
+        firestore.collection("todoLists").doc(this.props.todoList.id).update({date: this.props.todoList.date});
     }
 
     handleChange = (e) => {
@@ -44,19 +50,17 @@ class ListScreen extends Component {
         }
 
         return (
-            <div className="container white">
+            <div className="container beige">
                 <h5 className="grey-text text-darken-3">Todo List
+                <Button href="#modal1" style={{marginLeft: '437px', background: 'black'}} icon={<Icon class="material-icons">delete</Icon>}className="modal-trigger"></Button>
                 <div>
-                    <Button href="#modal1" className="modal-trigger">
-                        &#128465;
-                    </Button>
                     <Modal id="modal1" header="Delete List?" 
                     actions={
                         <React.Fragment>
-                        <Button onClick={this.deleteList}>
+                        <Button onClick={this.deleteList} style={{background: 'black'}}>
                             Yes
                         </Button>
-                        <Button modal="close">
+                        <Button modal="close" style={{background: 'black'}}>
                             No
                         </Button>
                         </React.Fragment>

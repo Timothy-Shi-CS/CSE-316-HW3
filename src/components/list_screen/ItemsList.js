@@ -8,6 +8,7 @@ import { firestore } from 'firebase';
 import { getFirestore } from 'redux-firestore';
 import { Redirect } from 'react-router-dom'
 import {Link} from 'react-router-dom';
+import {Card} from 'react-materialize';
 
 class ItemsList extends React.Component {
     state = {
@@ -23,14 +24,13 @@ class ItemsList extends React.Component {
             key: this.props.todoList.items.length, 
             id: this.props.todoList.items.length,
             description: "unknown",
-            due_date: "YYYY/MM/DD",
+            due_date: "YYYY-MM-DD",
             assigned_to: "unknown",
+            newItem: true,
             completed: false
         });
         firestore.collection("todoLists").doc(this.props.todoList.id).update({items: this.props.todoList.items});
         this.state.goItemScreen = true;
-        //console.log(this.props.todoList);
-        //this.props.history.push('/todoList/' + this.props.todoList.id.toString() + "/item/" + this.props.todoList.items[this.props.todoList.items.length - 1].id.toString()); 
     }
 
     sortTask = (e) =>{
@@ -51,6 +51,10 @@ class ItemsList extends React.Component {
                 return 0;
             })
             this.reverseTask = false;
+        }
+        for (var i = 0; i<ls.length; i++){
+            ls[i].id = i;
+            ls[i].key = i;
         }
         firestore.collection("todoLists").doc(this.props.todoList.id).update({items: ls});
     }
@@ -74,6 +78,10 @@ class ItemsList extends React.Component {
             })
             this.reverseDueDate = false;
         }
+        for (var i = 0; i<ls.length; i++){
+            ls[i].id = i;
+            ls[i].key = i;
+        }
         firestore.collection("todoLists").doc(this.props.todoList.id).update({items: ls});
     }
 
@@ -96,6 +104,10 @@ class ItemsList extends React.Component {
             })
             this.reverseStatus = false;
         }
+        for (var i = 0; i<ls.length; i++){
+            ls[i].id = i;
+            ls[i].key = i;
+        }
         firestore.collection("todoLists").doc(this.props.todoList.id).update({items: ls});
     }
     
@@ -110,18 +122,20 @@ class ItemsList extends React.Component {
         }
         return (
             <div className="todo-lists section">
-                <div className="row green">
-                    <span className="col s3" onClick = {this.sortTask}>Task</span>
-                    <span className="col s3" onClick = {this.sortDueDate}>Due Date</span>
-                    <span className="col s3" onClick = {this.sortStatus}>Status</span>
-                </div>
+                <Card className="row black">
+                    <span className="col s3" style={{color: 'white'}} onClick = {this.sortTask}>Task</span>
+                    <span className="col s3" style={{color: 'white'}} onClick = {this.sortDueDate}>Due Date</span>
+                    <span className="col s3" style={{color: 'white'}} onClick = {this.sortStatus}>Status</span>
+                </Card>
                 {items && items.map(function(item) {
                     item.id = item.key;
                     return (
                         <ItemCard todoList={todoList} item={item} />
                     );})
                 }
-                <div className="row" src={addItem} onClick={this.addItem}>+</div>
+                <Card>
+                    <img className="row" style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}}src={addItem} onClick={this.addItem}></img>
+                </Card>
             </div>
         );
     }

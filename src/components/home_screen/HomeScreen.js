@@ -14,7 +14,7 @@ class HomeScreen extends Component {
         const firestore = getFirestore();
         const { target } = e;
         firestore.collection("todoLists").add({
-            //date: new Date,
+            date: new Date(),
             name: "unknown",
             owner: "unknown",
             items: []
