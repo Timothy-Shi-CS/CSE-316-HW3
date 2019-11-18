@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {Button, Icon, Card} from 'react-materialize';
 import { getFirestore } from 'redux-firestore';
+import M from 'materialize-css';
 
 class ItemCard extends React.Component {
     state = {
@@ -65,23 +66,23 @@ class ItemCard extends React.Component {
         }
         const { item } = this.props;  
         return (
-            <div className="card z-depth-0 todo-list-link pink-lighten-3">
-                <Card className="card-content grey-text text-darken-3">
-                    <div className="row" onClick = {this.showItemScreen}>
-                        <span className="col s3">{item.description} <div>Assigned To: {item.assigned_to}</div></span>
-                        <span className="col s3">{item.due_date}</span>
-                        <span className="col s3">{item.completed ? "Completed" : "Pending"}</span>
-                        <span className="col s3">
+            <div className="card z-depth-0 todo-list-link pink-lighten-3" style={{marginBottom: '-14px'}}>
+                <Card className="card-content grey-text text-darken-3" onClick = {this.showItemScreen}>
+                    <div className="row" style={{textAlign: 'left'}}>
+                        <span className="col s3" style={{fontWeight: '900', fontSize: '100%'}}>{item.description} <div style={{fontWeight: 'normal', fontSize: '75%'}}>Assigned To:</div><strong style={{fontWeight: 'normal', fontSize: '75%'}}>{item.assigned_to}</strong></span>
+                        <span className="col s3" style={{textAlign: 'center'}}>{item.due_date}</span>
+                        <span className="col s3" style={item.completed ? {color: "green", textAlign: 'center'}: {color: "red", textAlign: 'center'}}>{item.completed ? "Completed" : "Pending"}</span>
+                        <span className="col s3" style={{textAlign: 'center', width: '130px'}}>
                             <Button
                                 floating
-                                fab={{direction: 'right'}}
+                                fab={{direction: 'left'}}
                                 className="red"
-                                large
-                                style={{marginLeft: '50px'},{position: 'relative'}}
+                                medium
+                                style={{left: '95%'},{position: 'absolute'}}
                             >
-                                <Button floating icon={<Icon class="material-icons">close</Icon>} className="red" onClick = {this.deleteItem}/>
-                                <Button floating icon={<Icon class="material-icons">arrow_downward</Icon>} className={this.props.item.key == this.props.todoList.items.length-1 ? "grey": "blue"} onClick = {this.moveItemDown}/>
-                                <Button floating icon={<Icon class="material-icons">arrow_upward</Icon>} className={this.props.item.key == 0 ? "grey": "green"} onClick = {this.moveItemUp}/>
+                                <Button style={{left: '100%'}} small floating icon={<Icon class="material-icons">arrow_upward</Icon>} className={this.props.item.key == 0 ? "grey": "green"} onClick = {this.moveItemUp}/>
+                                <Button style={{left: '100%'}} small floating icon={<Icon class="material-icons">arrow_downward</Icon>} className={this.props.item.key == this.props.todoList.items.length-1 ? "grey": "blue"} onClick = {this.moveItemDown}/>
+                                <Button style={{left: '100%'}} small floating icon={<Icon class="material-icons">close</Icon>} className="red" onClick = {this.deleteItem}/>
                             </Button>
                         </span>
                     </div>

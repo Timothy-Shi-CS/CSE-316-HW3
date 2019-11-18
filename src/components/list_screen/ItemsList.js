@@ -122,7 +122,7 @@ class ItemsList extends React.Component {
         }
         return (
             <div className="todo-lists section">
-                <Card className="row black">
+                <Card className="row black" style={{textAlign: 'center', marginBottom: '-6px'}}>
                     <span className="col s3" style={{color: 'white'}} onClick = {this.sortTask}>Task</span>
                     <span className="col s3" style={{color: 'white'}} onClick = {this.sortDueDate}>Due Date</span>
                     <span className="col s3" style={{color: 'white'}} onClick = {this.sortStatus}>Status</span>

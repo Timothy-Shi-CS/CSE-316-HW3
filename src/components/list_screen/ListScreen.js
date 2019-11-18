@@ -57,7 +57,7 @@ class ListScreen extends Component {
                     <Modal id="modal1" header="Delete List?" 
                     actions={
                         <React.Fragment>
-                        <Button onClick={this.deleteList} style={{background: 'black'}}>
+                        <Button onClick={this.deleteList} style={{background: 'black', marginRight: "5px"}}>
                             Yes
                         </Button>
                         <Button modal="close" style={{background: 'black'}}>
