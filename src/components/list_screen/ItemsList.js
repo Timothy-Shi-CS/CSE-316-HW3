@@ -123,9 +123,9 @@ class ItemsList extends React.Component {
         return (
             <div className="todo-lists section">
                 <Card className="row black" style={{textAlign: 'center', marginBottom: '-6px'}}>
-                    <span className="col s3" style={{color: 'white'}} onClick = {this.sortTask}>Task</span>
-                    <span className="col s3" style={{color: 'white'}} onClick = {this.sortDueDate}>Due Date</span>
-                    <span className="col s3" style={{color: 'white'}} onClick = {this.sortStatus}>Status</span>
+                    <span className="col s3" style={{color: 'white', fontSize: 'large', fontWeight: 'bold'}} onClick = {this.sortTask}>Task</span>
+                    <span className="col s3" style={{color: 'white', fontSize: 'large', fontWeight: 'bold'}} onClick = {this.sortDueDate}>Due Date</span>
+                    <span className="col s3" style={{color: 'white', fontSize: 'large', fontWeight: 'bold'}} onClick = {this.sortStatus}>Status</span>
                 </Card>
                 {items && items.map(function(item) {
                     item.id = item.key;

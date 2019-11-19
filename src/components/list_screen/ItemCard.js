@@ -78,11 +78,11 @@ class ItemCard extends React.Component {
                                 fab={{direction: 'left'}}
                                 className="red"
                                 medium
-                                style={{left: '95%'},{position: 'absolute'}}
+                                style={{left: '70%', position: 'relative', bottom:'10%'}}
                             >
-                                <Button style={{left: '100%'}} small floating icon={<Icon class="material-icons">arrow_upward</Icon>} className={this.props.item.key == 0 ? "grey": "green"} onClick = {this.moveItemUp}/>
-                                <Button style={{left: '100%'}} small floating icon={<Icon class="material-icons">arrow_downward</Icon>} className={this.props.item.key == this.props.todoList.items.length-1 ? "grey": "blue"} onClick = {this.moveItemDown}/>
-                                <Button style={{left: '100%'}} small floating icon={<Icon class="material-icons">close</Icon>} className="red" onClick = {this.deleteItem}/>
+                                <Button style={{left: '25%'}} small floating icon={<Icon class="material-icons">arrow_upward</Icon>} className={this.props.item.key == 0 ? "grey": "green"} onClick = {this.moveItemUp}/>
+                                <Button style={{left: '25%'}} small floating icon={<Icon class="material-icons">arrow_downward</Icon>} className={this.props.item.key == this.props.todoList.items.length-1 ? "grey": "blue"} onClick = {this.moveItemDown}/>
+                                <Button style={{left: '25%'}} small floating icon={<Icon class="material-icons">close</Icon>} className="red" onClick = {this.deleteItem}/>
                             </Button>
                         </span>
                     </div>
